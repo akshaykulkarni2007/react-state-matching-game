@@ -12,7 +12,7 @@ class App extends Component {
 		super(props)
 
 		this.state = {
-			numTiles: 35,
+			numTiles: 36,
 			playing: false,
 			previousTileIndex: null,
 			tiles: [],
@@ -20,7 +20,7 @@ class App extends Component {
 		}
 	}
 
-	startGame(numTiles) {
+	startGame = (numTiles) => {
 		this.setState((state) => ({
 			playing: true,
 			previousTileIndex: null,
@@ -30,19 +30,16 @@ class App extends Component {
 	}
 
 	render() {
-		const { numTiles, playing, previousTileIndex, tiles, toBeCleared } =
-			this.state
-
 		return (
 			<div className="App">
 				<header className="App-header">Turbo-Matcher</header>
 
 				<OptionsPanel
-					playing={playing}
-					numTiles={numTiles}
-					startGame={startGame}
+					playing={this.state.playing}
+					numTiles={this.state.numTiles}
+					startGame={this.startGame}
 				/>
-				<Board numTiles={numTiles} tiles={tiles} />
+				<Board numTiles={this.state.numTiles} tiles={this.state.tiles} />
 			</div>
 		)
 	}
